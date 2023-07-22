@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="70dp"
-            android:text="username : "
+            android:text="사용자이름 : "
             android:textSize="15sp">
         </TextView>
 
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="70dp"
-            android:text="Password : "
+            android:text="비밀번호 : "
             android:textSize="15sp">
         </TextView>
 
@@ -101,6 +101,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:text="Submit">
+        android:text="확인">
     </Button>
 </LinearLayout>
