@@ -33,7 +33,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/deposit"
+            android:id="@+id/txtCharge"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
