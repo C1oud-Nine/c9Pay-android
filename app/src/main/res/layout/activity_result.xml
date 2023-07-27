@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp"
-        android:text="Time 초 후 돌아갑니다."
+        android:text="Time 초 후 자동으로 돌아갑니다."
         android:textSize="20sp">
     </TextView>
 </LinearLayout>

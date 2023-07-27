@@ -33,7 +33,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/id"
+            android:id="@+id/txtId"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -59,7 +59,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/pw"
+            android:id="@+id/txtPassword"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
