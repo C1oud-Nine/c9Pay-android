@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.c9pay.module.createQRCode
 
 
 class PayActivity : AppCompatActivity() {
