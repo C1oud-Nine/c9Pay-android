@@ -4,24 +4,26 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.c9pay.retrofit.userservice.APIMethods
-import com.example.c9pay.retrofit.userservice.dto.LoginRequest
-import com.example.c9pay.retrofit.userservice.dto.LoginResponseError
-import com.example.c9pay.retrofit.userservice.dto.LoginResponseOK
-
+import com.example.c9pay.module.handleErrorCode
+import com.example.c9pay.retrofit.LoginRequest
+import com.example.c9pay.retrofit.RetrofitInterface
+import com.example.c9pay.retrofit.LoginResponse
+import org.json.JSONObject
+import org.json.JSONTokener
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class EntryActivity : AppCompatActivity() {
     var backPressedTime: Long = 0
+
     lateinit var edtID: EditText
     lateinit var edtPassword: EditText
     lateinit var btnLogin: Button
     lateinit var btnSignup: Button
-    lateinit var pbLogin: ProgressBar
 
     companion object {
         var entryActivity: EntryActivity? = null
@@ -47,9 +49,35 @@ class EntryActivity : AppCompatActivity() {
                 ).show()
                 return@setOnClickListener
             }
+
             else {
+                val retrofitObj = RetrofitInterface.create()
                 val loginRequest = LoginRequest(edtID.getText().toString(), edtPassword.getText().toString())
-                postLogin(loginRequest)
+
+                retrofitObj.postLogin(loginRequest).enqueue(object : Callback<LoginResponse> {
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        if(response.isSuccessful) {
+                            val responseBody = response.body()!!
+                            Log.d("success : ", responseBody.token)
+                            Toast.makeText(this@EntryActivity, "안녕하세요!", Toast.LENGTH_SHORT)
+                                .show()
+                            // intent: MainActivity 전환
+                        }
+                        else {
+                            val responseErrorBody = JSONTokener(response.errorBody()?.string()!!).nextValue() as JSONObject
+                            val errorCode = responseErrorBody.getString("errorCode")
+                            Log.e("error : ", errorCode)
+                            Toast.makeText(this@EntryActivity, handleErrorCode(errorCode), Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        Toast.makeText(this@EntryActivity, "서버와 연결할 수 없습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                        Log.e("failure :", t.message.toString())
+                    }
+                })
             }
         }
 
@@ -63,8 +91,7 @@ class EntryActivity : AppCompatActivity() {
         if (backPressedTime + 3000 > System.currentTimeMillis()) {
             super.onBackPressed()
             finish()
-        }
-        else {
+        } else {
             Toast.makeText(
                 this@EntryActivity,
                 "한 번 더 뒤로가기 버튼을 누르면 앱을 종료합니다.",
@@ -72,33 +99,5 @@ class EntryActivity : AppCompatActivity() {
             ).show()
         }
         backPressedTime = System.currentTimeMillis()
-    }
-
-    private fun postLogin (loginRequest: LoginRequest) {
-        pbLogin = findViewById(R.id.pbLogin)
-        pbLogin.visibility = View.VISIBLE
-
-        APIMethods.postLogin(
-            loginRequest
-        ) { response ->
-            when (response) {
-                is LoginResponseOK -> {
-                    Log.d("EntryActivity", "Login success")
-                }
-                is LoginResponseError -> {
-                    Log.d("tag", "" + response.code)
-                    Log.d("tag", response.message)
-                    Log.d("tag", response.method)
-                }
-                else -> {
-                    Toast.makeText(
-                        applicationContext,
-                        "로그인 실패했습니다.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-        pbLogin.visibility = View.GONE
     }
 }

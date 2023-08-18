@@ -1,4 +1,4 @@
-package com.example.c9pay.retrofit.userservice.dto
+package com.example.c9pay.retrofit
 
 data class LoginRequest(
     val userId: String,

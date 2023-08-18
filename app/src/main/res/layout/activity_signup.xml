@@ -28,12 +28,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="70dp"
-            android:text="사용자이름 : "
+            android:text="ID : "
             android:textSize="15sp">
         </TextView>
 
         <EditText
-            android:id="@+id/txtNewusername"
+            android:id="@+id/edtNewID"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -54,12 +54,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="70dp"
-            android:text="ID : "
+            android:text="이름 : "
             android:textSize="15sp">
         </TextView>
 
         <EditText
-            android:id="@+id/txtNewid"
+            android:id="@+id/edtNewUsername"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -85,7 +85,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/txtNewpassword"
+            android:id="@+id/edtNewPassword"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -95,8 +95,34 @@
         </EditText>
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="70dp"
+            android:text="e-mail : "
+            android:textSize="15sp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/edtNewEmail"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:importantForAutofill="no">
+        </EditText>
+    </LinearLayout>
+
     <Button
-        android:id="@+id/btnSignupsubmit"
+        android:id="@+id/btnSignupSubmit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
