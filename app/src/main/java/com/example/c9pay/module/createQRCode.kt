@@ -1,4 +1,4 @@
-package com.example.c9pay
+package com.example.c9pay.module
 
 import android.graphics.Bitmap
 import android.graphics.Color
