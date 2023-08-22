@@ -9,11 +9,12 @@
     android:paddingBottom="16dp">
 
     <TextView
+        android:id="@+id/txtUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="170dp"
-        android:text="현재 잔고"
+        android:layout_marginTop="130dp"
+        android:text=""
         android:textSize="30sp">
     </TextView>
 
@@ -21,8 +22,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="현재 잔고"
+        android:textSize="18sp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtCredit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="sample:cash"
+        android:text=""
         android:textSize="35sp">
     </TextView>
 
