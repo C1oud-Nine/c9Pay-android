@@ -28,8 +28,13 @@ interface RetrofitInterface {
 
     @GET("api/user")
     fun getUser(
-        @Header("Cookie") authorization: String
+        @Header("Cookie") authorization: String?
     ) : Call<UserResponse>
+
+    @GET("api/qr")
+    fun getQR(
+        @Header("Cookie") authorization: String?
+    ) : Call<PayResponse>
 
 
     companion object {

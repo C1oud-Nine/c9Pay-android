@@ -7,7 +7,7 @@ fun handleErrorCode(errorCodeStr: String): String {
             return "이미 등록된 ID 입니다."
         }
         101 -> {
-            return "로그인이 필요한 작업입니다."
+            return "세션이 만료되었습니다. 다시 로그인 해주세요."
         }
         102 -> {
             return "등록되지 않은 회원입니다."
