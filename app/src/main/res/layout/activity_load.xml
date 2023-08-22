@@ -33,7 +33,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/txtCharge"
+            android:id="@+id/edtCharge"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
