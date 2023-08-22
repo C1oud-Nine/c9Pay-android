@@ -59,9 +59,13 @@ class EntryActivity : AppCompatActivity() {
                         if(response.isSuccessful) {
                             val responseBody = response.body()!!
                             Log.d("success : ", responseBody.token)
+
                             Toast.makeText(this@EntryActivity, "안녕하세요!", Toast.LENGTH_SHORT)
                                 .show()
-                            // intent: MainActivity 전환
+
+                            val toMainIntent = Intent(this@EntryActivity, MainActivity::class.java)
+                            toMainIntent.putExtra("authorization", responseBody.token)
+                            startActivity(toMainIntent)
                         }
                         else {
                             val responseErrorBody = JSONTokener(response.errorBody()?.string()!!).nextValue() as JSONObject
