@@ -16,31 +16,35 @@ interface RetrofitInterface {
     @Headers("accept: application/json",
         "content-type: application/json")
     fun postLogin(
-        @Body req : LoginRequest
-    ) : Call<LoginResponse>
+        @Body req: LoginRequest
+    ): Call<LoginResponse>
 
     @POST("api/user/signup")
-    @Headers("accept: application/json",
-        "content-type: application/json")
     fun postSignup(
-        @Body req : SignupRequest
-    ) : Call<String>
+        @Body req: SignupRequest
+    ): Call<String>
 
     @GET("api/user")
     fun getUser(
         @Header("Cookie") authorization: String?
-    ) : Call<UserResponse>
+    ): Call<UserResponse>
 
     @GET("api/qr")
     fun getQR(
         @Header("Cookie") authorization: String?
-    ) : Call<PayResponse>
+    ): Call<PayResponse>
+
+    @POST("api/credit")
+    fun postCredit(
+        @Header("Cookie") authorization: String?,
+        @Body req: LoadRequest
+    ): Call<Void>
 
 
     companion object {
         private const val BASE_URL = "http://192.168.35.49:8083/user-service/" // for test url
         fun create(): RetrofitInterface {
-            val gson : Gson = GsonBuilder().setLenient().create()
+            val gson: Gson = GsonBuilder().setLenient().create()
 
 
             return Retrofit.Builder()

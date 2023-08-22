@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -21,11 +20,10 @@ import retrofit2.Response
 import java.util.Timer
 import java.util.TimerTask
 
-
-class PayActivity : AppCompatActivity() {
+class PayActivity: AppCompatActivity() {
     /* PayActivity <-> MainActivity */
     companion object {
-        var payActivity : PayActivity? = null
+        var payActivity: PayActivity? = null
     }
 
     // 전역 변수
@@ -50,7 +48,7 @@ class PayActivity : AppCompatActivity() {
         // 서버 통신
         val retrofitObj = RetrofitInterface.create()
         // API 호출
-        retrofitObj.getQR(authorization).enqueue(object : Callback<PayResponse> {
+        retrofitObj.getQR(authorization).enqueue(object: Callback<PayResponse> {
             override fun onResponse(call: Call<PayResponse>, response: Response<PayResponse>) {
 
                 //// 통신 및 호출 성공 시
@@ -69,7 +67,7 @@ class PayActivity : AppCompatActivity() {
                     /// QR 유효시간 타이머
                     // remainTime = 남은 시간
                     var remainTime: Long = (responseBody.expiredAt - System.currentTimeMillis()) / 1000
-                    val timerTask = object : TimerTask() {
+                    val timerTask = object: TimerTask() {
                         override fun run() {
                             val handler = Handler(Looper.getMainLooper())
                             handler.postDelayed({
@@ -109,7 +107,6 @@ class PayActivity : AppCompatActivity() {
             override fun onFailure(call: Call<PayResponse>, t: Throwable) {
                 Toast.makeText(this@PayActivity, "서버와 연결할 수 없습니다.", Toast.LENGTH_SHORT)
                     .show()
-                Log.d("failure :", t.message.toString())
 
                 // MainActivity 전환
                 val toMainIntent = Intent(this@PayActivity, MainActivity::class.java)
@@ -119,6 +116,7 @@ class PayActivity : AppCompatActivity() {
         })
     }
 
+    // back 버튼 클릭 시, MainActivity 전환
     override fun onBackPressed() {
         timer.cancel()
         Toast.makeText(this@PayActivity, "결제를 취소합니다.",

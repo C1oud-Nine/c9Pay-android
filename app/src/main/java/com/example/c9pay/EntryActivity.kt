@@ -16,8 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-class EntryActivity : AppCompatActivity() {
+class EntryActivity: AppCompatActivity() {
     /* EntryActivity <-> MainActivity */
     companion object {
         var entryActivity: EntryActivity? = null
@@ -56,7 +55,7 @@ class EntryActivity : AppCompatActivity() {
                 val loginRequest = LoginRequest(edtID.getText().toString(), edtPassword.getText().toString())
 
                 // API 호출
-                retrofitObj.postLogin(loginRequest).enqueue(object : Callback<LoginResponse> {
+                retrofitObj.postLogin(loginRequest).enqueue(object: Callback<LoginResponse> {
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
 
                         //// 통신 및 호출 성공 시
