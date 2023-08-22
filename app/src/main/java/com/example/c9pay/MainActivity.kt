@@ -16,13 +16,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.DecimalFormat
 
-
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
     /* MainActivity <-> EntryActivity
     * MainActivity <-> PayActivity
     * MainActivity <-> LoadActivity */
     companion object {
-        var mainActivity : MainActivity? = null
+        var mainActivity: MainActivity? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         // 서버 통신
         val retrofitObj = RetrofitInterface.create()
         // API 호출
-        retrofitObj.getUser(authorization).enqueue(object : Callback<UserResponse> {
+        retrofitObj.getUser(authorization).enqueue(object: Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
 
                 //// 통신 및 호출 성공 시

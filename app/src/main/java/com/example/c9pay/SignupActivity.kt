@@ -2,7 +2,6 @@ package com.example.c9pay
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -15,8 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-class SignupActivity : AppCompatActivity() {
+class SignupActivity: AppCompatActivity() {
     /* Stack on EntryActivity */
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +49,7 @@ class SignupActivity : AppCompatActivity() {
                     edtNewPassword.getText().toString(), edtNewEmail.getText().toString())
 
                 // API 호출
-                retrofitObj.postSignup(signupRequest).enqueue(object : Callback<String> {
+                retrofitObj.postSignup(signupRequest).enqueue(object: Callback<String> {
                     override fun onResponse(call: Call<String>, response: Response<String>) {
 
                         //// 통신 및 호출 성공 시
@@ -65,7 +63,6 @@ class SignupActivity : AppCompatActivity() {
                         else {
                             val responseErrorBody = JSONTokener(response.errorBody()?.string()!!).nextValue() as JSONObject
                             val errorCode = responseErrorBody.getString("errorCode")
-                            Log.e("error : ", errorCode)
                             Toast.makeText(this@SignupActivity, handleErrorCode(errorCode), Toast.LENGTH_SHORT)
                                 .show()
                         }
@@ -75,7 +72,6 @@ class SignupActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<String>, t: Throwable) {
                         Toast.makeText(this@SignupActivity, "서버와 연결할 수 없습니다.", Toast.LENGTH_SHORT)
                             .show()
-                        Log.d("failure :", t.message.toString())
                     }
                 })
             }
@@ -83,7 +79,7 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    // 뒤로가기 시 종료
+    // back 버튼 클릭 시, 이전 화면으로
     override fun onBackPressed() {
         Toast.makeText(this, "회원가입을 취소합니다.", Toast.LENGTH_SHORT).show()
         finish()
