@@ -42,7 +42,7 @@ interface RetrofitInterface {
 
 
     companion object {
-        private const val BASE_URL = "http://192.168.35.49:8083/user-service/" // for test url
+        private const val BASE_URL = "" //
         fun create(): RetrofitInterface {
             val gson: Gson = GsonBuilder().setLenient().create()
 

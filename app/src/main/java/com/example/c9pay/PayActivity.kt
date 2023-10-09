@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -58,11 +59,19 @@ class PayActivity: AppCompatActivity() {
 
                     /// QR 코드
                     // QR 문자열 파싱
+                    Log.v("QR", responseBody.toString())
                     val QRstring_original = responseBody.toString()
                     val QRstring_split = QRstring_original.split("(", ")")
-                    val QRstring_final = "{" + QRstring_split[1] + "}"
+                    var QRstr = QRstring_split[1]
+                    QRstr = "{" + QRstr
+                    QRstr = QRstr.replace("content=", "\"content\": \"")
+                    QRstr = QRstr.replace(", expiredAt=", "\", \"expiredAt\": ")
+                    QRstr = QRstr.replace(", sign=", ", \"sign\": \"")
+                    QRstr = QRstr + "\"}"
+
+                    // Log.v("QR", QRstr)
                     // QR 코드 출력
-                    createQRCode(QRstring_final, imgQR)
+                    createQRCode(QRstr, imgQR)
 
                     /// QR 유효시간 타이머
                     // remainTime = 남은 시간
